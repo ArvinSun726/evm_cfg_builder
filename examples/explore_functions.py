@@ -1,5 +1,5 @@
 import sys
-from evm_cfg_builder.cfg.cfg import CFG
+from evm_cfg_builder.cfg import CFG
 
 if len(sys.argv) != 2:
     print("Usage python explore_functions.py contract.evm")
@@ -26,7 +26,7 @@ for function in sorted(cfg.functions, key=lambda x: x.start_addr):
     for basic_block in sorted(function.basic_blocks, key=lambda x: x.start.pc):
         # Each basic block has a start and end instruction
         # instructions are pyevmasm.Instruction objects
-        print(f"\t- @{len(basic_block.start.pc)}-{hex(basic_block.end.pc)}")
+        print(f"\t- @{hex(basic_block.start.pc)}-{hex(basic_block.end.pc)}")
 
         print("\t\tInstructions:")
         for ins in basic_block.instructions:
